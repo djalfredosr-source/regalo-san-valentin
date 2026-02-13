@@ -29,10 +29,10 @@ export default function Home() {
           className="text-center mb-12"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-rose-600 drop-shadow-sm flex items-center justify-center gap-3">
-            Our Love Story <Heart className="fill-rose-500 text-rose-500 animate-pulse" />
+            Nuestra Historia de Amor <Heart className="fill-rose-500 text-rose-500 animate-pulse" />
           </h1>
           <p className="mt-4 text-pink-700 text-lg md:text-xl font-light italic">
-            "Every moment with you is a memory I treasure forever."
+            "Cada momento contigo es un recuerdo que atesoro para siempre."
           </p>
         </motion.header>
 
@@ -58,7 +58,7 @@ export default function Home() {
           onClick={() => setShowForm(true)}
           className="bg-white text-pink-600 px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-pink-200/50 flex items-center gap-2 transition-all border border-pink-100 mb-10"
         >
-          <Plus size={20} strokeWidth={3} /> Add New Memory
+          <Plus size={20} strokeWidth={3} /> Agregar Nuevo Recuerdo
         </motion.button>
 
         <MemoryTimeline key={timelineKey} />

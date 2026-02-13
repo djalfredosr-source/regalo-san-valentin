@@ -44,7 +44,7 @@ export default function MemoryForm({ onMemoryAdded }: { onMemoryAdded: () => voi
             onMemoryAdded();
         } catch (error) {
             console.error('Error adding memory:', error);
-            alert('Error adding memory!');
+            alert('¡Error al agregar el recuerdo!');
         } finally {
             setLoading(false);
         }
@@ -57,12 +57,12 @@ export default function MemoryForm({ onMemoryAdded }: { onMemoryAdded: () => voi
             className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-xl max-w-md w-full mx-auto border border-pink-100"
             onSubmit={handleSubmit}
         >
-            <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">Add a New Memory 💖</h2>
+            <h2 className="text-2xl font-bold text-pink-600 mb-6 text-center">Agregar Nuevo Recuerdo 💖</h2>
 
             <div className="space-y-4">
                 <div>
                     <label className="block text-sm font-medium text-pink-700 mb-1 flex items-center gap-2">
-                        <Calendar size={16} /> Date
+                        <Calendar size={16} /> Fecha
                     </label>
                     <input
                         type="date"
@@ -75,7 +75,7 @@ export default function MemoryForm({ onMemoryAdded }: { onMemoryAdded: () => voi
 
                 <div>
                     <label className="block text-sm font-medium text-pink-700 mb-1 flex items-center gap-2">
-                        <FileText size={16} /> Description
+                        <FileText size={16} /> Descripción
                     </label>
                     <textarea
                         value={description}
@@ -87,7 +87,7 @@ export default function MemoryForm({ onMemoryAdded }: { onMemoryAdded: () => voi
 
                 <div>
                     <label className="block text-sm font-medium text-pink-700 mb-1 flex items-center gap-2">
-                        <Upload size={16} /> Photo/Video
+                        <Upload size={16} /> Foto/Video
                     </label>
                     <input
                         type="file"
@@ -103,7 +103,7 @@ export default function MemoryForm({ onMemoryAdded }: { onMemoryAdded: () => voi
                     disabled={loading}
                     className="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-70 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                 >
-                    {loading ? <Loader2 className="animate-spin" /> : 'Save Memory ✨'}
+                    {loading ? <Loader2 className="animate-spin" /> : 'Guardar Recuerdo ✨'}
                 </button>
             </div>
         </motion.form>

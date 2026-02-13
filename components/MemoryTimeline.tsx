@@ -36,7 +36,7 @@ export default function MemoryTimeline({ key }: { key: number }) {
     };
 
     const handleDelete = async (id: string, mediaUrl: string) => {
-        if (!confirm('Are you sure you want to delete this memory? 💔')) return;
+        if (!confirm('¿Estás segura de que quieres borrar este recuerdo? 💔')) return;
 
         try {
             // 1. Delete from Storage
@@ -53,7 +53,7 @@ export default function MemoryTimeline({ key }: { key: number }) {
             setMemories(memories.filter((m) => m.id !== id));
         } catch (error) {
             console.error('Error deleting memory:', error);
-            alert('Could not delete memory.');
+            alert('No se pudo borrar el recuerdo.');
         }
     };
 
@@ -61,7 +61,7 @@ export default function MemoryTimeline({ key }: { key: number }) {
         fetchMemories();
     }, [key]);
 
-    if (loading) return <div className="text-center text-pink-500 animate-pulse">Loading memories... 💖</div>;
+    if (loading) return <div className="text-center text-pink-500 animate-pulse">Cargando recuerdos... 💖</div>;
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl mx-auto p-4">
@@ -96,7 +96,7 @@ export default function MemoryTimeline({ key }: { key: number }) {
                             <button
                                 onClick={() => handleDelete(memory.id, memory.media_url)}
                                 className="absolute top-2 left-2 bg-white/80 backdrop-blur p-1.5 rounded-full text-red-500 hover:text-red-600 hover:bg-white transition-colors shadow-sm opacity-0 group-hover:opacity-100"
-                                title="Delete Memory"
+                                title="Borrar Recuerdo"
                             >
                                 <Trash2 size={16} />
                             </button>
@@ -110,7 +110,7 @@ export default function MemoryTimeline({ key }: { key: number }) {
             </AnimatePresence>
             {memories.length === 0 && (
                 <div className="col-span-full text-center text-pink-400 py-10">
-                    No memories yet. Add your first one above! ✨
+                    Aún no hay recuerdos. ¡Agrega el primero arriba! ✨
                 </div>
             )}
         </div>

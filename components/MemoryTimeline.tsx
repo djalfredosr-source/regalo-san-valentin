@@ -4,7 +4,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabaseClient';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Calendar } from 'lucide-react';
+import { Calendar, Trash2 } from 'lucide-react';
 
 interface Memory {
     id: string;
@@ -32,6 +32,28 @@ export default function MemoryTimeline({ key }: { key: number }) {
             console.error('Error fetching memories:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id: string, mediaUrl: string) => {
+        if (!confirm('Are you sure you want to delete this memory? 💔')) return;
+
+        try {
+            // 1. Delete from Storage
+            const filePath = mediaUrl.split('/').pop(); // Extract filename
+            if (filePath) {
+                await supabase.storage.from('memories').remove([filePath]);
+            }
+
+            // 2. Delete from Database
+            const { error } = await supabase.from('memories').delete().eq('id', id);
+            if (error) throw error;
+
+            // 3. Update UI
+            setMemories(memories.filter((m) => m.id !== id));
+        } catch (error) {
+            console.error('Error deleting memory:', error);
+            alert('Could not delete memory.');
         }
     };
 
@@ -71,6 +93,14 @@ export default function MemoryTimeline({ key }: { key: number }) {
                                 <Calendar size={12} />
                                 {new Date(memory.date).toLocaleDateString()}
                             </div>
+                            <button
+                                onClick={() => handleDelete(memory.id, memory.media_url)}
+                                className="absolute top-2 left-2 bg-white/80 backdrop-blur p-1.5 rounded-full text-red-500 hover:text-red-600 hover:bg-white transition-colors shadow-sm opacity-0 group-hover:opacity-100"
+                                title="Delete Memory"
+                            >
+                                <Trash2 size={16} />
+                            </button>
+
                         </div>
                         <div className="p-4">
                             <p className="text-gray-700 font-medium leading-relaxed">{memory.description}</p>
